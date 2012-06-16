@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}Yola GitHub Code Review LeaderBoard: {{username}}{% endblock %}
+
+{% block body %}
+<table class="table table-striping">
+    <tr><th>Project</th><th>Pulls</th><th>Comments</th></tr>
+{% for project, stats in user_data.items() %}
+    <tr>
+        <td><a href="{{ url_for('project', projectname=project) }}">{{ project }}</a>
+        <td>{{stats.pulls}}</td>
+        <td>{{stats.comments}}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

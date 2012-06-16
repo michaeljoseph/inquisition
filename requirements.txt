@@ -1,0 +1,6 @@
+gunicorn
+flask
+requests
+omnijson
+dotdict
+Flask-Markdown

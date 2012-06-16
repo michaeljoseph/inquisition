@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}nobody@{{organisation.name|lower}} expects the Code Review Inquisition!{% endblock %}
+
+{% block body %}
+<div class="hero-unit">
+    <div class="page-header">
+      <img src="{{organisation.avatar_url}}" style="float:left;"/>
+      <h1><a href="{{organisation.html_url}}" target="_blank">{{organisation.name}}</a></h1>
+    </div>
+    <ul>
+        <li>Public Repos: {{organisation.public_repos}}</li>
+        <li>Followers: {{organisation.followers}}</li>
+    </ul>
+</div>
+
+<div class="row" id="pulls">
+    <div class="span12 yank">
+        <h3 id="pulls">Chief Yank Requestors</h3>
+        <ul class="thumbnails">
+            {% for pull in pulls %}
+            <li class="span2">
+                <div class="thumbnail">
+                    <a class="thumbnail" href="{{ url_for('user', username=pull.login) }}">
+                      <img height="80" width="80" src="{{ avatars[pull.login] }}"/>
+                    </a>
+                    <h5><a class="thumbnail" href="{{ url_for('user', username=pull.login) }}">{{pull.login}}</a></h5>
+                    <span class="badge badge-success">{{pull.count}}</span>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<hr/>
+<div class="row" id="comments">
+    <div class="span12 comment">
+        <h3>VPs Of Commentary</h3>
+        <ul class="thumbnails">
+            {% for comment in comments %}
+            <li class="span2">
+                <div class="thumbnail">
+                    <a class="thumbnail" href="{{ url_for('user', username=comment.login) }}">
+                      <img height="80" width="80" src="{{ avatars[comment.login] }}"/>
+                    </a>
+                    <h5><a class="thumbnail" href="{{ url_for('user', username=comment.login) }}">{{comment.login}}</a></h5>
+                    <span class="badge badge-success">{{comment.count}}</span>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<section id="projects">
+<h2>Projects</h2>
+<div class="container">
+{% for item in projects|sort %}
+        <a class="btn" href="{{ url_for('project', projectname=item) }}">{{ item }}</a>
+{% endfor %}
+</div>
+</section>
+
+{% endblock %}
