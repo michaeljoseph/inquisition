@@ -22,14 +22,20 @@ This Flask webapp presents users, across a GitHub organisation's repositories:
 
 ### Configure
 
-Edit config.py and change `GITHUB_TOKEN` and `ORGANISATION_NAME`
+Edit config.py and change `GITHUB_USER`, `GITHUB_PASSWORD` and `ORGANISATION_NAME`
 
-    DEBUG = True
-    TESTING = True
-    SECRET_KEY = 'the key to secrecy is a secret key'
-    GITHUB_TOKEN = "db3845dbff6a4f14b77ebbe890edd989"
-    STORE = '.'
-    ORGANISATION_NAME = 'my-organisation-name'
+	DEBUG = True
+	TESTING = True
+	SECRET_KEY = 'the key is secrecy is a secret key'
+	
+	# Github credentials
+	GITHUB_USER = 'my-github-username'
+	GITHUB_PASSWORD = 'my-github-password'
+	ORGANISATION_NAME = 'my-organisation-name'
+	
+	# The directory to store the github json data file
+	STORE = '.'
+
 
 ### Initialise the data store
 
