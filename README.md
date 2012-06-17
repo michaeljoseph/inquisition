@@ -13,6 +13,7 @@ This Flask webapp presents users, across a GitHub organisation's repositories:
 
 [Demonstration site @ http://theinquisition.herokuapp.com](http://theinquisition.herokuapp.com/)
 
+Theme: [Slate @ Bootswatch](http://bootswatch.com/slate)
 
 ## Installation and Setup
 
