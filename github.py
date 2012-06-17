@@ -22,6 +22,7 @@ def pull_requests(user, repository, state='closed'):
 
     if response.ok:
         pulls = json.loads(response.content)
+
     return pulls
 
 def pull_requests_with_comments(user, repository, state='closed'):
@@ -50,9 +51,20 @@ def organisation_repositories(organisation):
 
 def organisation(org):
     organisation = None
+
     response = github_api('/orgs/%(organisation)s' % {'organisation': org})
+
     if response.ok:
         organisation = json.loads(response.content)
-    else:
-        print response
+
     return organisation
+
+def user(username):
+    user = None
+
+    response = github_api('/users/%(username)s' % {'username': username})
+
+    if response.ok:
+        user = json.loads(response.content)
+
+    return user

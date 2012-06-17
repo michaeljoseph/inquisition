@@ -20,12 +20,24 @@ def load_data(organisation_name, update=False):
         pull_requests = []
         pull_request_comments = []
         projects_with_pulls = []
+        user_data = {}
+        project_data = {}
 
         for project in projects:
             pulls, comments = github.pull_requests_with_comments(organisation_name, project, state='closed')
             print '[load_data] %s: got %d pull requests with %d comments' % (project, len(pulls), len(comments))
             open_pulls, open_comments = github.pull_requests_with_comments(organisation_name, project, state='open')
             print '[load_data] %s: got %d open pull requests with %d comments' % (project, len(open_pulls), len(open_comments))
+
+            for user in [x['user']['login'] for x in pulls+open_pulls]:
+                if user not in user_data:
+                    print '[load_data] %s: caching user %s' % (project, user)
+                    user_data[user] = github.user(user)
+
+            if project not in project_data and (pulls+open_pulls):
+                print '[load_data] caching project %s data' % project
+                project_data[project] = (pulls or open_pulls)[0]['base']['repo'] 
+
             pulls += open_pulls
             comments += open_comments
 
@@ -48,6 +60,9 @@ def load_data(organisation_name, update=False):
             'projects'                         : projects,
             'projects_with_pulls'              : projects_with_pulls,
             'organisation'                     : organisation,
+
+            'user_data'                        : user_data,
+            'project_data'                     : project_data,
         }
         with PersistentDict(path, 'c', format='json') as d:
             d.update(data)
