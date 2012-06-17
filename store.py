@@ -29,7 +29,7 @@ def load_data(organisation_name, update=False):
             open_pulls, open_comments = github.pull_requests_with_comments(organisation_name, project, state='open')
             print '[load_data] %s: got %d open pull requests with %d comments' % (project, len(open_pulls), len(open_comments))
 
-            for user in [x['user']['login'] for x in pulls+open_pulls]:
+            for user in [x['user']['login'] for x in pulls+open_pulls if x['user']]:
                 if user not in user_data:
                     print '[load_data] %s: caching user %s' % (project, user)
                     user_data[user] = github.user(user)
