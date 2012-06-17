@@ -1,6 +1,6 @@
 # inquisition
 
-## Nobody expects the Code Review Inquisition!
+## No one expects the Code Review Inquisition!
 
 ![no one expected this](http://24.media.tumblr.com/tumblr_m4jru1wwGS1qmfjj7o1_500.jpg)
 
@@ -10,7 +10,6 @@ This Flask webapp presents users, across a GitHub organisation's repositories:
 
 - ranked by the number of pull request creations and pull request comments
 - lists currently open pull requests across repos in an organisation
-
 
 ## Installation and Setup
 
@@ -35,7 +34,6 @@ Edit config.py and change `GITHUB_USER`, `GITHUB_PASSWORD` and `ORGANISATION_NAM
 	
 	# The directory to store the github json data file
 	STORE = '.'
-
 
 ### Initialise the data store
 
