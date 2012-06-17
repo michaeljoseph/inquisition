@@ -1,17 +1,24 @@
 {% extends "layout.html" %}
 
-{% block title %}no-one@{{organisation.name|lower}} expects the Code Review Inquisition!{% endblock %}
-
 {% block body %}
 <div class="hero-unit">
     <div class="page-header">
-      <h1>{{projectname}}</h1>
+      <h1><a href="{{project.html_url}}" target="_blank">{{projectname}}</a></h1>
+      <p>{{project.description}}</p>
     </div>
+    {% if project %}
+    <p>Language: {{project.language}}</p>
+    <p>Forks: {{project.forks}}</p>
+    <p>Watchers: {{project.Watchers}}</p>
+    <p>Open Issues: {{project.open_issues}}</p>
+    {% else %}
+    <p>No Review Data</p>
+    {% endif %}
 </div>
-{% if project_data.pulls or project_data.comments %}
+{% if project_stats %}
     <table class="table table-striping">
         <tr><th>User</th><th>Pulls</th><th>Comments</th></tr>
-        {% for user, stats in project_data.items() %}
+        {% for user, stats in project_stats.items() %}
         <tr>
             <td><a href="{{ url_for('user', username=user) }}">{{ user }}</a>
             <td>{{stats.pulls}}</td>

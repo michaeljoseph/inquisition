@@ -24,19 +24,27 @@ def user(username):
     """Show project stats for this user"""
     data = aggregate_data(config.ORGANISATION_NAME)
     return render_template('user.html',
-            avatar       = data['user_avatars'][username],
-            organisation = data['organisation'],
-            username     = username,
-            user_data    = data['users'][username])
+            avatar        = data['user_avatars'][username],
+            organisation  = data['organisation'],
+            username      = username,
+            user          = data['raw']['user_data'][username],
+            project_stats = data['users'][username])
 
 @app.route('/projects/<projectname>')
 def project(projectname):
     """Show user stats for this project"""
     data = aggregate_data(config.ORGANISATION_NAME)
+
+    project_stats = data['projects'][projectname]
+    if project_stats:
+        project_stats.pop('pulls')
+        project_stats.pop('comments')
+
     return render_template('project.html',
-            organisation = data['organisation'],
-            projectname  = projectname,
-            project_data = data['projects'][projectname])
+            organisation  = data['organisation'],
+            projectname   = projectname,
+            project_stats = project_stats,
+            project       = data['raw']['project_data'].get(projectname))
 
 @app.route('/open-pull-requests')
 def open_pulls():

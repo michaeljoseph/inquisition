@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
 
-{% block title %}nobody@{{organisation.name|lower}} expects the Code Review Inquisition!{% endblock %}
+{% block header %}
+<div class="page-header">
+    <h1>nobody@{{organisation.name|lower}} expects the Code Review Inquisition!</h1>
+</div>
+{% endblock %}
+
 
 {% block body %}
 <div class="hero-unit">

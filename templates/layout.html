@@ -21,9 +21,7 @@
           </div>
         </div>
         <div class="container">
-            <div class="page-header">
-                <h1>{% block title %}{% endblock %}</h1>
-            </div>
+            {% block header %}{% endblock %}
 
             {% for message in get_flashed_messages() %}
             <div class="alert">

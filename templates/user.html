@@ -1,17 +1,19 @@
 {% extends "layout.html" %}
 
-{% block title %}{{username}}@{{organisation.name|lower}} does not expect the Code Review Inquisition!{% endblock %}
-
 {% block body %}
 
 <div class="hero-unit">
     <div class="page-header">
-      <h1><img src="{{avatar}}"/>{{username}}</h1>
+      <h1><a href="{{user.html_url}}" target="_blank"><img src="{{avatar}}"/>{{user.name}}</a></h1>
     </div>
+    <p>Public repos: {{user.public_repos}}</p>
+    <p>Public gists: {{user.public_gists}}</p>
+    <p>Followers: {{user.followers}}</p>
+    <p>Following: {{user.following}}</p>
 </div>
 <table class="table table-striping">
     <tr><th>Project</th><th>Pulls</th><th>Comments</th></tr>
-    {% for project, stats in user_data.items() %}
+    {% for project, stats in project_stats.items() %}
     <tr>
         <td><a href="{{ url_for('project', projectname=project) }}">{{ project }}</a>
         <td>{{stats.pulls}}</td>
