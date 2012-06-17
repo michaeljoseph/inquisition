@@ -24,14 +24,17 @@ def user(username):
     """Show project stats for this user"""
     data = aggregate_data(config.ORGANISATION_NAME)
     return render_template('user.html',
-            username  = username,
-            user_data = data['users'][username])
+            avatar       = data['user_avatars'][username],
+            organisation = data['organisation'],
+            username     = username,
+            user_data    = data['users'][username])
 
 @app.route('/projects/<projectname>')
 def project(projectname):
     """Show user stats for this project"""
     data = aggregate_data(config.ORGANISATION_NAME)
     return render_template('project.html',
+            organisation = data['organisation'],
             projectname  = projectname,
             project_data = data['projects'][projectname])
 

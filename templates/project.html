@@ -1,9 +1,13 @@
 {% extends "layout.html" %}
 
-{% block title %}Yola GitHub Code Review LeaderBoard: {{projectname}}{% endblock %}
+{% block title %}nobody@{{organisation.name|lower}} expects the Code Review Inquisition!{% endblock %}
 
 {% block body %}
-
+<div class="hero-unit">
+    <div class="page-header">
+      <h1>{{projectname}}</h1>
+    </div>
+</div>
 {% if project_data.pulls or project_data.comments %}
     <table class="table table-striping">
         <tr><th>User</th><th>Pulls</th><th>Comments</th></tr>

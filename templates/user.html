@@ -1,16 +1,22 @@
 {% extends "layout.html" %}
 
-{% block title %}Yola GitHub Code Review LeaderBoard: {{username}}{% endblock %}
+{% block title %}{{username}}@{{organisation.name|lower}} does not expect the Code Review Inquisition!{% endblock %}
 
 {% block body %}
+
+<div class="hero-unit">
+    <div class="page-header">
+      <h1><img src="{{avatar}}"/>{{username}}</h1>
+    </div>
+</div>
 <table class="table table-striping">
     <tr><th>Project</th><th>Pulls</th><th>Comments</th></tr>
-{% for project, stats in user_data.items() %}
+    {% for project, stats in user_data.items() %}
     <tr>
         <td><a href="{{ url_for('project', projectname=project) }}">{{ project }}</a>
         <td>{{stats.pulls}}</td>
         <td>{{stats.comments}}</td>
     </tr>
-{% endfor %}
+    {% endfor %}
 </table>
 {% endblock %}
