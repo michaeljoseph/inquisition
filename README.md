@@ -59,6 +59,6 @@ I've included a setup script (that works for me, YMMV, IANAL) targeted at Ubuntu
 You'll probably also want to keep the local data store up-to-date, so cron re-loading the data:
 
     # m h  dom mon dow   command
-    @hourly INQUISITION_ROOT=/srv/www/inquisition PYTHONPATH=$INQUISITION_ROOT $INQUISITION_ROOT/bin/python -c "import store; store.load_data(config.ORGANISATION_NAME, update=True)"
+    @hourly INQUISITION_ROOT=/srv/www/inquisition PYTHONPATH=$INQUISITION_ROOT $INQUISITION_ROOT/bin/python -c "import store, config; store.load_data(config.ORGANISATION_NAME, update=True)"
 
 
