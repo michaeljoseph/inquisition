@@ -13,10 +13,10 @@
             <img height="80" width="80" src="{{ avatars[pull.user.login] }}"/>
            </a>
       </td>
-      <!--<td><a href="{{pull.html_url}}">{{pull.title}}</a></td>-->
+
       <td>
-          <a data-toggle="collapse" data-target="#pr-body-{{pull.id}}" rel="tooltip" title="show pull request body">{{pull.title}}</a>
-          <div id="pr-body-{{pull.id}}" class="collapse out">{% filter markdown %} {{pull.body}} {% endfilter %}</div>
+          <a href="{{pull.html_url}}" target="_blank">{{pull.title}}</a>
+          <div>{% filter markdown %} {{pull.body}} {% endfilter %}</div>
       </td>
 {% endfor %}
 </table>
